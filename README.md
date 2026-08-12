@@ -14,3 +14,7 @@ This is a .Net Core Web API that consumes Open Brewery DB and exposes a simplifi
 
   ## Endpoint
   GET /api/v1/breweries
+
+  Added new feature for Autocomplete.
+  
+  GET /api/v1/suggetions
