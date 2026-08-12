@@ -11,6 +11,7 @@ This is a .Net Core Web API that consumes Open Brewery DB and exposes a simplifi
 - Dependency Injection
 - Middleware for error handling
 - Solid based architecture.
+- API Versioning
 
   ## Endpoint
   GET /api/v1/breweries
