@@ -25,5 +25,15 @@ namespace BreweryApi.Controllers
             var breweries = await _breweryService.GetBreweriesAsync(query);
             return Ok(breweries);
         }
+
+        [HttpGet("suggestions")]
+        [ProducesResponseType(typeof(IReadOnlyList<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetSuggestions([FromQuery] string term)
+        {
+            var suggestions = await _breweryService.GetSuggetionsAsync(term);
+            return Ok(suggestions);
+        }
     }
 }

@@ -5,5 +5,6 @@ namespace BreweryApi.Interfaces
     public interface IBreweryService
     {
         Task<IReadOnlyList<BreweryDto>> GetBreweriesAsync(BreweryQuery query);
+        Task<IReadOnlyList<string>> GetSuggetionsAsync(string term);
     }
 }

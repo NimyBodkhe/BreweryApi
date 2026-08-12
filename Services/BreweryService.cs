@@ -133,5 +133,20 @@ namespace BreweryApi.Services
             return degree * Math.PI / 180;
         }
 
+        public async Task<IReadOnlyList<string>> GetSuggetionsAsync(string term)
+        {
+            if(string.IsNullOrWhiteSpace(term))
+            {
+                return Array.Empty<string>();
+            }
+
+            var breweries = await GetCachedBreweriesAsync();
+            return breweries
+                .Where(x => x.Name.ToLower().Contains(term.ToLower(), StringComparison.OrdinalIgnoreCase))
+                .Select(x => x.Name)
+                .Distinct()
+                .Take(10)
+                .ToList();
+        }
     }
 }
