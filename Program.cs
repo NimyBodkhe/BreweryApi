@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using BreweryApi.Clients;
 using BreweryApi.Interfaces;
 using BreweryApi.Mappers;
@@ -7,6 +8,12 @@ using BreweryApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ReportApiVersions = true;
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
