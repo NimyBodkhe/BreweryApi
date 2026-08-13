@@ -41,7 +41,9 @@ namespace BreweryApi.Services
             }
             _logger.LogInformation("Cache has expired, calling open brewery DB api");
             var sourceBreweries = await _breweryApiClient.GetBreweriesAsync();
-            var mappedBreweries = sourceBreweries.Select(_breweryMapper.Map).ToList();
+            var mappedBreweries = sourceBreweries.Where(x => !string.Equals(x.BreweryType, "closed", StringComparison.OrdinalIgnoreCase))
+                .Select(_breweryMapper.Map)
+                .ToList();
 
             var cacheOption = new MemoryCacheEntryOptions
             {
