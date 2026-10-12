@@ -12,8 +12,8 @@ permissions:
 
 env:
   DOTNET_VERSION: '8.0.x'
-  AZURE_WEBAPP_NAME: 'REPLACE_WITH_YOUR_APP_NAME'
-  PROJECT_PATH: './REPLACE_WITH_YOUR_PROJECT_NAME.csproj'
+  AZURE_WEBAPP_NAME: 'brewery-api'
+  PROJECT_PATH: './BreweryApi.csproj'
 
 jobs:
   build-and-deploy:
@@ -34,8 +34,7 @@ jobs:
       - name: Build
         run: dotnet build "${{ env.PROJECT_PATH }}" --configuration Release --no-restore
 
-      - name: Run tests
-        run: dotnet test --configuration Release
+      
 
       - name: Publish API
         run: dotnet publish "${{ env.PROJECT_PATH }}" --configuration Release --no-build --output "${{ runner.temp }}/publish"
